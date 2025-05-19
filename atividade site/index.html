@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TechNova</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <nav>
+      <div class="logo">🌐 TechNova</div>
+      <div class="menu">
+        <a href="#sobre">Sobre Nós</a>
+        <a href="#servicos">Serviços</a>
+        <button class="btn-primary" id="btn-inscreva">Inscreva-se</button>
+      </div>
+    </nav>
+
+    <div class="hero-text">
+      <h1>Bem-vindo à Revolução TechNova!</h1>
+      <p>Transformamos ideias em inovações que desafiam o ordinário e inspiram o futuro. Venha ser parte dessa jornada incrível!</p>
+      <div style="margin-top: 1.5rem;">
+        <button class="btn-primary" id="btn-descubra">Descubra Mais</button>
+        <button class="btn-primary" id="btn-junte" style="margin-left: 1rem;">Junte-se a Nós</button>
+      </div>
+    </div>
+  </header>
+
+  <section id="sobre">
+    <div class="sobre">
+      <div class="sobre-texto">
+        <h2>Quem Somos</h2>
+        <p>
+          A Technova é uma empresa inovadora que se destaca no setor de tecnologia, oferecendo soluções avançadas para atender às necessidades de um mercado em constante evolução. Com um compromisso firme com a pesquisa e desenvolvimento, a Technova se especializa em criar produtos e serviços que não apenas atendem, mas superam as expectativas de seus clientes.
+        </p>
+        <p>
+          Fundada por um grupo de visionários apaixonados por tecnologia, a Technova tem como missão transformar ideias em realidade, utilizando as mais recentes inovações em áreas como inteligência artificial, automação e análise de dados. A empresa acredita que a tecnologia deve ser acessível e benéfica para todos, e, por isso, trabalha incansavelmente para desenvolver soluções que melhorem a eficiência e a produtividade em diversos setores, incluindo saúde, educação, indústria e serviços.
+        </p>
+        <p>
+          Além de seu portfólio diversificado de produtos, a Technova também se destaca por seu compromisso com a sustentabilidade e a responsabilidade social. A empresa busca não apenas o sucesso econômico, mas também o impacto positivo na sociedade e no meio ambiente, implementando práticas sustentáveis em suas operações e promovendo iniciativas que beneficiem a comunidade.
+        </p>
+        <p>
+          Com uma equipe de profissionais altamente qualificados e apaixonados, a Technova está sempre à frente das tendências do mercado, pronta para enfrentar os desafios do futuro e contribuir para um mundo mais conectado e inteligente. A empresa se orgulha de ser uma parceira confiável para seus clientes, oferecendo suporte contínuo e soluções personalizadas que atendem às necessidades específicas de cada um.
+        </p>
+      </div>
+      <div class="sobre-img">
+        <img src="OIP (1).jfif" alt="Quem Somos">
+      </div>
+    </div>
+  </section>
+
+  <section id="servicos">
+    <h2 style="text-align:center;">Nossas Funcionalidades</h2>
+    <div class="cards">
+      <div class="card">
+        <i>🚀</i>
+        <h3>Inovação Sem Limites</h3>
+        <p>Criamos soluções que quebram barreiras e redefinem o possível com criatividade e ousadia.</p>
+      </div>
+      <div class="card">
+        <i>👨‍💻</i>
+        <h3>Equipe Dedicada</h3>
+        <p>Nossos especialistas estão prontos para transformar suas ideias em realidade com um sorriso e muito café!</p>
+      </div>
+      <div class="card">
+        <i>🧠</i>
+        <h3>Suporte Intuitivo</h3>
+        <p>Você não está sozinho! Estamos sempre aqui para ajudar, antes, durante e depois do seu projeto.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 TechNova. Todos os direitos reservados.
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('btn-inscreva').addEventListener('click', function () {
+      window.location.href = 'index1.html';
+    });
+
+   
+    const nomeUsuario = localStorage.getItem('nomeUsuario');
+    if (nomeUsuario) {
+      alert(`Bem-vindo(a), ${nomeUsuario}! Obrigado por se inscrever na TechNova.`);
+      localStorage.removeItem('nomeUsuario'); 
+    }
+  });
+</script>
+
+</body>
+</html>

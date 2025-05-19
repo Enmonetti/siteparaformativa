@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Technova - Inscreva-se</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #f0f0f0;
+  }
+
+  .container {
+    background: rgba(33, 70, 104, 0.95);
+    padding: 40px 50px 50px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+    margin: 0;
+  }
+
+  h1 {
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 2.5rem;
+    color: #33c0ff;
+    letter-spacing: 2px;
+  }
+
+  p.subtitle {
+    font-weight: 400;
+    font-size: 1rem;
+    color: #a1d1ff;
+    margin-bottom: 30px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+
+  .form-group {
+    position: relative;
+    font-size: 1rem;
+    text-align: left;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
+    padding: 16px 16px 16px 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: #1e3a57;
+    color: #e0f7ff;
+    outline: none;
+    transition: box-shadow 0.3s ease;
+  }
+
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="password"]:focus {
+    box-shadow: 0 0 8px #33c0ff;
+  }
+
+  label {
+    position: absolute;
+    top: 16px;
+    left: 12px;
+    padding: 0 4px;
+    color: #a1d1ff;
+    pointer-events: none;
+    transition: 0.3s ease all;
+    background: rgba(33, 70, 104, 0.95);
+    border-radius: 4px;
+  }
+
+
+  input:focus + label,
+  input:not(:placeholder-shown) + label {
+    top: -8px;
+    left: 8px;
+    font-size: 0.75rem;
+    color: #33c0ff;
+    font-weight: 600;
+  }
+
+  .btn-submit {
+    margin-top: 10px;
+    background-color: #33c0ff;
+    border: none;
+    border-radius: 10px;
+    padding: 14px 20px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #021f3f;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    letter-spacing: 1px;
+  }
+
+  .btn-submit:hover {
+    background-color: #1a81b0;
+    color: #e0f7ff;
+  }
+
+  .message {
+    margin-top: 20px;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .message.success {
+    color: #7fe29e;
+  }
+
+  .message.error {
+    color: #f26868;
+  }
+</style>
+</head>
+<body>
+  <div class="container" role="main">
+    <h1>Technova</h1>
+    <p class="subtitle">Inscreva-se e faça parte do futuro da tecnologia!</p>
+    <form id="signupForm" novalidate>
+      <div class="form-group">
+        <input type="text" id="name" name="name" placeholder=" " required />
+        <label for="name">Nome Completo</label>
+      </div>
+      <div class="form-group">
+        <input type="email" id="email" name="email" placeholder=" " required />
+        <label for="email">E-mail</label>
+      </div>
+      <div class="form-group">
+        <input type="password" id="password" name="password" placeholder=" " minlength="6" required />
+        <label for="password">Senha</label>
+      </div>
+      <div class="form-group">
+        <input type="password" id="confirmPassword" name="confirmPassword" placeholder=" " minlength="6" required />
+        <label for="confirmPassword">Confirme a Senha</label>
+      </div>
+      <button type="submit" class="btn-submit">Inscreva-se</button>
+      <div id="formMessage" class="message" aria-live="polite"></div>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById('signupForm');
+    const messageDiv = document.getElementById('formMessage');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      messageDiv.textContent = '';
+      messageDiv.className = 'message';
+
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const password = form.password.value;
+      const confirmPassword = form.confirmPassword.value;
+
+      if (!name) {
+        messageDiv.textContent = 'Por favor, informe seu nome completo.';
+        messageDiv.classList.add('error');
+        form.name.focus();
+        return;
+      }
+
+      if (!validateEmail(email)) {
+        messageDiv.textContent = 'Por favor, informe um e-mail válido.';
+        messageDiv.classList.add('error');
+        form.email.focus();
+        return;
+      }
+
+      if (password.length < 6) {
+        messageDiv.textContent = 'A senha deve ter pelo menos 6 caracteres.';
+        messageDiv.classList.add('error');
+        form.password.focus();
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        messageDiv.textContent = 'As senhas não conferem. Por favor, tente novamente.';
+        messageDiv.classList.add('error');
+        form.confirmPassword.focus();
+        return;
+      }
+
+      
+      messageDiv.textContent = `Obrigado por se inscrever, ${name}!`;
+      messageDiv.classList.add('success');
+
+      form.reset();
+    });
+
+    function validateEmail(email) {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(email.toLowerCase());
+    }
+    
+  </script>
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('signupForm');
+    const messageDiv = document.getElementById('formMessage');
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      messageDiv.textContent = '';
+      messageDiv.className = 'message';
+
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const password = form.password.value;
+      const confirmPassword = form.confirmPassword.value;
+
+      if (!name) {
+        messageDiv.textContent = 'Por favor, informe seu nome completo.';
+        messageDiv.classList.add('error');
+        form.name.focus();
+        return;
+      }
+
+      if (!validateEmail(email)) {
+        messageDiv.textContent = 'Por favor, informe um e-mail válido.';
+        messageDiv.classList.add('error');
+        form.email.focus();
+        return;
+      }
+
+      if (password.length < 6) {
+        messageDiv.textContent = 'A senha deve ter pelo menos 6 caracteres.';
+        messageDiv.classList.add('error');
+        form.password.focus();
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        messageDiv.textContent = 'As senhas não conferem. Por favor, tente novamente.';
+        messageDiv.classList.add('error');
+        form.confirmPassword.focus();
+        return;
+      }
+
+      messageDiv.textContent = `Obrigado por se inscrever, ${name}!`;
+      messageDiv.classList.add('success');
+
+      localStorage.setItem('nomeUsuario', name); // Salva para exibir na index
+
+      setTimeout(() => {
+        window.location.href = 'index.html'; // Redireciona para a página inicial
+      }, 2000);
+
+      form.reset();
+    });
+
+    function validateEmail(email) {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(email.toLowerCase());
+    }
+  });
+</script>
+
+</body>
+</html>
